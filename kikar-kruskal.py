@@ -1,18 +1,3 @@
-#write me the kruskal algorithm and add description
-
-#Kruskal's algorithm is a minimum-spanning-tree 
-#algorithm which finds an edge of the least possible 
-#weight that connects any two trees in the forest. 
-#It is a greedy algorithm in graph theory as it finds a minimum spanning 
-#tree for a connected weighted graph adding increasing cost arcs at each step.
-# This means it finds a subset of the edges that forms a tree that includes every vertex,
-# where the total weight of all the edges in the tree is minimized. If the graph is not connected,
-# then it finds a minimum spanning forest (a minimum spanning tree for each connected component).
-
-#The algorithm operates by sorting all the edges in non-decreasing order of their weight.
-# Then, it iterates through the sorted edges and adds the edge to the minimum spanning tree 
-#if it doesn't form a cycle with the edges that are already in the minimum spanning tree. 
-#The algorithm uses a disjoint-set data structure to determine whether adding an edge forms a cycle.
 
 
 class Graph:
