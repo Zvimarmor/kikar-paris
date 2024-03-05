@@ -56,7 +56,7 @@ class Graph:
 # g1.add_edge(1, 3, 8)
 # g1.add_edge(2, 3, 1)
 # g1.add_edge(3, 4, 2)
-# print(g1.dijkstra(0, 5))  # Expected: (16, [0, 2, 3, 4, 5])
+# print(g1.dijkstra(0, 5))  
 
 # # Graph 2
 # g2 = Graph(8)
