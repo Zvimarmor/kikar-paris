@@ -12,6 +12,16 @@ class Graph:
         self.edges.setdefault(v, []).append((u, weight))
         #this two lines are simetric because the graph isn't directed
 
+    def change_weight(self, u, v, weight):
+        for i, (neighbor, w) in enumerate(self.edges[u]):
+            if neighbor == v:
+                self.edges[u][i] = (neighbor, weight)
+                break
+        for i, (neighbor, w) in enumerate(self.edges[v]):
+            if neighbor == u:
+                self.edges[v][i] = (neighbor, weight)
+                break
+
     def dijkstra(self, start, end):
         distances = {vertex: float('infinity') for vertex in self.vertices}
         distances[start] = 0
@@ -98,11 +108,11 @@ class Graph:
 # print(g4.dijkstra(0, 6))  # Expected: (8, [0, 2, 4, 6])
 
 # kikar_paris = Graph(6)
-# kikar_paris.add_edge(0, 1, 0)
+# kikar_paris.add_edge(0, 1, 20)
 # kikar_paris.add_edge(0, 2, 20)
 # kikar_paris.add_edge(1, 3, 14)
 # kikar_paris.add_edge(2, 4, 19)
 # kikar_paris.add_edge(3, 5, 12)
 # kikar_paris.add_edge(4, 5, 0)
 
-# print(kikar_paris.dijkstra(0,1)) # Expected: (33, [2, 4, 5, 3]) 
+# print(kikar_paris.dijkstra(0,5)) # Expected: (33, [2, 4, 5, 3]) 
