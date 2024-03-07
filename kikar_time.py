@@ -37,3 +37,15 @@ while True:
 
     # Sleep for one second before running the program again
     time.sleep(1)
+
+
+# #real nubers of kikar paris
+# kikar_paris = Graph(6)
+# kikar_paris.add_edge(0, 1, 40, 40, 60, RED)
+# kikar_paris.add_edge(1, 2, 17, 107, 13, GREEN)
+# kikar_paris.add_edge(0, 3, 14, 108, 10, GREEN)
+# kikar_paris.add_edge(2, 4, 19, 38, 81, RED)
+# kikar_paris.add_edge(3, 5, 12, 96, 22, GREEN)
+# kikar_paris.add_edge(4, 6, 14, 76, 4, RED)
+# kikar_paris.add_edge(5, 6, 0, 82, 38, GREEN)
+# print(kikar_paris.dijkstra(0, 5))  # Expected: (33, [2, 4, 5, 3])

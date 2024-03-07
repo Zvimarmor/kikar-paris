@@ -1,5 +1,8 @@
 import heapq
 
+GREEN = 1
+RED = 0
+
 class Graph:
     def __init__(self, num_vertices):
         self.vertices = set()
@@ -91,7 +94,7 @@ class Graph:
 # # Test cases
 # # 5. The graph is a complex graph with a cycle and 20 vertices
 # complex_graph = Graph(20)
-# complex_graph.add_edge(0, 1, 10, 10, 10, "red")
+# complex_graph.add_edge(0, 1, 10, 10, 10, RED)
 # complex_graph.add_edge(1, 2, 10, 10, 10, "green")
 # complex_graph.add_edge(2, 3, 10, 10, 10, "red")
 # complex_graph.add_edge(3, 4, 10, 10, 10, "green")
@@ -113,11 +116,13 @@ class Graph:
 # complex_graph.add_edge(19, 0, 10, 10, 10, "green")
 # print(complex_graph.dijkstra(0, 19))  # Expected: (10, [0, 1])
 
+# #real nubers of kikar paris
 # kikar_paris = Graph(6)
-# kikar_paris.add_edge(0, 1, 20, 10, 10, "red")
-# kikar_paris.add_edge(0, 2, 60, 10, 10, "green")
-# kikar_paris.add_edge(1, 3, 14, 10, 10, "red")
-# kikar_paris.add_edge(2, 4, 19, 10, 10, "green")
-# kikar_paris.add_edge(3, 5, 12, 10, 10, "red")
-# kikar_paris.add_edge(4, 5, 0, 10, 10, "green")
+# kikar_paris.add_edge(0, 1, 40, 40, 60, RED)
+# kikar_paris.add_edge(1, 2, 17, 107, 13, GREEN)
+# kikar_paris.add_edge(0, 3, 14, 108, 10, GREEN)
+# kikar_paris.add_edge(2, 4, 19, 38, 81, RED)
+# kikar_paris.add_edge(3, 5, 12, 96, 22, GREEN)
+# kikar_paris.add_edge(4, 6, 14, 76, 4, RED)
+# kikar_paris.add_edge(5, 6, 0, 82, 38, GREEN)
 # print(kikar_paris.dijkstra(0, 5))  # Expected: (33, [2, 4, 5, 3])
