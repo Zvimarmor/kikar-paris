@@ -5,35 +5,42 @@ from kikar_dijkstra import Graph
 def build_graph():
     # args = ["python", "kikar_dijkstra.py", number of vertices, 
     # edges(list of pairs of 4 numbers - v, u, current time, total time), start, end]
-    junction = Graph(sys.argv[2])
+    junction = Graph(sys.argv[1])
+    edges_str = sys.argv[2].split(" ")
     
-    # Parse the string representation of edges into a list
-    edges_str = sys.argv[2].split( )
-    edges = [(int(edges_str[i]), int(edges_str[i+1]), int(edges_str[i+2],int(edges_str[i+3]), int(edges_str[i+4]), int(edges_str[i+5])))\
-               for i in range(0, len(edges_str), 6)]
+    # Ensure that the length of the edges_str is a multiple of 6
+    if len(edges_str) % 6 != 0:
+        print("Invalid number of arguments in edges list.")
+        sys.exit(1)
 
-    for edge in edges:
-        junction.add_edge(edge[0], edge[1],edge[2])
+    # Convert string values to integers and add edges to the graph
+    for i in range(0, len(edges_str), 6):
+        u, v, current_time, red_light_time, green_light_time, status = map(int, edges_str[i:i+6])
+        junction.add_edge(u, v, current_time, red_light_time, green_light_time, status)
+
+    return junction
 
 
 def run_program(junction):
-    for edge in junction.edges:
-        if edge[2] <= 0:
-            if edge[4] == 0:
-                junction.change_weight(edge[0], edge[1], edge[3], edge[3], edge[4], 1)
-            if edge[4] == 1:
-                junction.change_weight(edge[0], edge[1], edge[4], edge[3], edge[4], 0)
-            
-        junction.change_weight(edge[0], edge[1], edge[2]-1, edge[3], edge[4], edge[5])
+    for vertex, edges in junction.edges.items():
+        for i, (neighbor, current_time, red_light_time, green_light_time, status) in enumerate(edges):
+            if status > 0:  # if the status is green
+                junction.change_weight(vertex, neighbor, 0, red_light_time, green_light_time, status - 1)
+            elif status == 0:  # if the status is the end of the green light
+                junction.change_weight(vertex, neighbor, red_light_time, red_light_time, green_light_time, -1)
+            elif status < 0 and current_time <= 0:  # if the status is red and the time is over
+                junction.change_weight(vertex, neighbor, 0, red_light_time, green_light_time, green_light_time)
+            elif status < 0 and current_time > 0:  # if the status is red and the time is not over
+                junction.change_weight(vertex, neighbor, current_time - 1, red_light_time, green_light_time, -1)
 
     answer = junction.dijkstra(int(sys.argv[3]), int(sys.argv[4]))
     print(answer)
 
-build_graph()
-run_program()
+junction = build_graph()
+run_program(junction)
 
 while True:
-    run_program()
+    run_program(junction)
 
     # Sleep for one second before running the program again
     time.sleep(1)

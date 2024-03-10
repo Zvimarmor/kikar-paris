@@ -8,7 +8,7 @@ class Graph:
         self.vertices = set()
         self.edges = {}
 
-    def add_edge(self, u, v, current_time, red_light_time, green_light_time, status): #status is 0 for red and 1 for green
+    def add_edge(self, u, v, current_time, red_light_time, green_light_time, status): #status is -1 for red and <=0 for green
         self.vertices.add(u)
         self.vertices.add(v)
         self.edges.setdefault(u, []).append((v, current_time, red_light_time, green_light_time, status))
@@ -16,11 +16,11 @@ class Graph:
         #this two lines are simetric because the graph isn't directed
 
     def change_weight(self, u, v, current_time, red_light_time, green_light_time ,status):
-        for i, (neighbor, w) in enumerate(self.edges[u]):
+        for i, (neighbor, w, red_light_time, green_light_time, status) in enumerate(self.edges[u]):
             if neighbor == v:
                 self.edges[u][i] = (neighbor, current_time, red_light_time, green_light_time, status)
                 break
-        for i, (neighbor, w) in enumerate(self.edges[v]):
+        for i, (neighbor, w, red_light_time, green_light_time, status) in enumerate(self.edges[v]):
             if neighbor == u:
                 self.edges[v][i] = (neighbor, current_time, red_light_time, green_light_time, status)
                 break
