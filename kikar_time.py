@@ -38,9 +38,16 @@ def run_program(junction):
 
 junction = build_graph()
 run_program(junction)
+seconds_counter = 00
+minutes_counter = 0
 
 while True:
     run_program(junction)
+    seconds_counter += 1
+    if seconds_counter % 60 == 0:
+        minutes_counter += 1
+        seconds_counter = 0
+    print(f"Time passed: {minutes_counter}:{seconds_counter}")
 
     # Sleep for one second before running the program again
     time.sleep(1)
